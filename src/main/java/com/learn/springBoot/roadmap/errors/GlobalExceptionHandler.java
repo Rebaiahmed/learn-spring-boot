@@ -1,4 +1,4 @@
-package com.learn.springBoot.roadmap.web;
+package com.learn.springBoot.roadmap.errors;
 
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
