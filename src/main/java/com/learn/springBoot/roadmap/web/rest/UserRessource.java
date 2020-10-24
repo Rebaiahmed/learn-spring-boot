@@ -2,6 +2,7 @@ package com.learn.springBoot.roadmap.web.rest;
 
 
 import com.learn.springBoot.roadmap.dto.UserDto;
+import com.learn.springBoot.roadmap.errors.exceptions.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,5 +40,10 @@ public class UserRessource {
     @DeleteMapping("/{userId}")
     public ResponseEntity<Object> deleteUSER(@PathVariable("userId") String userId) {
         return new ResponseEntity<>("User is updated successfully", HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/by-id/{userId}", method = RequestMethod.GET)
+    public ResponseEntity<Object> getUserById(@PathVariable("userId") String userId) {
+        throw new UserNotFoundException();
     }
 }
