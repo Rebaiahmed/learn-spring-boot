@@ -3,6 +3,7 @@ package com.learn.springBoot.roadmap.web.rest;
 
 import com.learn.springBoot.roadmap.dto.ItemDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -22,7 +23,8 @@ public class ExternalApiRessource {
 
     @Autowired
     private RestTemplate restTemplate;
-    private static final String URL_API = "https://jsonplaceholder.typicode.com/todos";
+    @Value("${spring.application.urlApi}")
+    private String URL_API ;
 
 
 

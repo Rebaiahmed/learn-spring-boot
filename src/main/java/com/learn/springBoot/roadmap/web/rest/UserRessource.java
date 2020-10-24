@@ -3,6 +3,7 @@ package com.learn.springBoot.roadmap.web.rest;
 
 import com.learn.springBoot.roadmap.dto.UserDto;
 import com.learn.springBoot.roadmap.errors.exceptions.UserNotFoundException;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,8 @@ public class UserRessource {
 
 
     @GetMapping("/all")
+    @ApiOperation(value = "Get all users",
+            notes = "Also returns a link to retrieve all students with rel - all-students")
     public ResponseEntity<Object> getAllUsers() {
         return new ResponseEntity<>("get all users success !", HttpStatus.OK);
     }
@@ -27,7 +30,7 @@ public class UserRessource {
         return new ResponseEntity<>("User is created successfully v1", HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/products", method = RequestMethod.POST)
+    @RequestMapping(value = "/users", method = RequestMethod.POST)
     public ResponseEntity<Object> createUserV2(@RequestBody UserDto userDto) {
         return new ResponseEntity<>("User is created successfully v2", HttpStatus.CREATED);
     }

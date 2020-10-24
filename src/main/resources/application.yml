@@ -2,9 +2,14 @@ spring:
   application:
     name: roadmap
     urlApi : 'https://jsonplaceholder.typicode.com/todos'
+
     file:
        multipart:
             enabled :false
             max-file-size:10MB
   server:
-port: 9090
+    servlet:
+      contextPath: /api
+      port: 9090
+
+
