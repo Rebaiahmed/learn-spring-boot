@@ -12,6 +12,12 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
+import javax.mail.*;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.Properties;
+
 
 @Component
 public class MailServiceImpl implements MailService {
@@ -25,14 +31,34 @@ public class MailServiceImpl implements MailService {
     private JavaMailSender mailSender;
 
     @Override
-    public void sendSimpleMail(String to, String subject, String content) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom(from);
-        message.setTo(to);
+    public void sendSimpleMail(String to, String subject, String content) throws MessagingException {
+
+        final String username = "mail";//change accordingly
+        final String password = "password";//change accordingly
+
+        // GMail's SMTP server
+        String host = "smtp.gmail.com";
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.ssl.trust", host);
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(from));
+        // Set To: header field of the header.
+        message.setRecipients(Message.RecipientType.TO,
+                InternetAddress.parse(to));
         message.setSubject(subject);
         message.setText(content);
         try{
-            mailSender.send(message);
+            Transport.send(message);
             logger.info("mail sent with success!");
         } catch (Exception e) {
             logger.error("Error seding the mail！", e);
