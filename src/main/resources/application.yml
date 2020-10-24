@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: roadmap
+    urlApi : 'https://jsonplaceholder.typicode.com/todos'
+  server:
+port: 9090
