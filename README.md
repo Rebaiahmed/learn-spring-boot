@@ -40,7 +40,7 @@ Maven dependncies :
 
 ---
 
-## Nodejs_graphql  :heavy_check_mark:
+## Spring Boot Interceptor  :heavy_check_mark:
 
 
 
