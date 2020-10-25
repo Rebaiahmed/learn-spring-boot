@@ -1,4 +1,4 @@
-<h1 align="center"> Roadmap-To-learn-Graphql </h1> <br>
+<h1 align="center"> learning-spring-boot </h1> <br>
 <p align="center">
   <a href="https://gitpoint.co/">
     <img alt="Graphql" title="SpringBoot" src="https://spring.io/images/spring-logo-9146a4d3298760c2e7e49595184e1975.svg" width="450">
